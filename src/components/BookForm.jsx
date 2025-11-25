@@ -27,9 +27,12 @@ export default function BookForm() {
   function validate() {
     const err = {};
     if (!form.title.trim()) err.title = "Title is required";
-    if (!form.short_description.trim()) err.short_description = "Short description required";
-    if (!form.full_description.trim()) err.full_description = "Full description required";
-    if (!form.price.trim() || isNaN(form.price)) err.price = "Valid price required";
+    if (!form.short_description.trim())
+      err.short_description = "Short description required";
+    if (!form.full_description.trim())
+      err.full_description = "Full description required";
+    if (!form.price.trim() || isNaN(form.price))
+      err.price = "Valid price required";
     if (!form.date.trim()) err.date = "Date is required";
     if (!form.category.trim()) err.category = "Category required";
     if (!form.author.trim()) err.author = "Author required";
@@ -48,14 +51,17 @@ export default function BookForm() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/books", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        "https://learning-books-server.vercel.app/books",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        }
+      );
 
       if (!res.ok) {
-        toast("Something went wrong")
+        toast("Something went wrong");
         setLoading(false);
         return;
       }
@@ -72,7 +78,6 @@ export default function BookForm() {
         author: "",
         image_url: "",
       });
-
     } catch (error) {
       console.log(error);
       toast("Failed to submit");
@@ -86,7 +91,6 @@ export default function BookForm() {
       <h2 className="text-2xl font-bold mb-6">Add New Book</h2>
 
       <form onSubmit={handleSubmit} className="space-y-5">
-
         {/* Title */}
         <div>
           <label className="block mb-1 font-medium">Title</label>
@@ -97,7 +101,9 @@ export default function BookForm() {
             className="w-full border rounded-md p-2"
             placeholder="Enter book title"
           />
-          {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
+          {errors.title && (
+            <p className="text-red-500 text-sm">{errors.title}</p>
+          )}
         </div>
 
         {/* Short Description */}
@@ -133,7 +139,6 @@ export default function BookForm() {
 
         {/* Grid Inputs */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
           {/* Price */}
           <div>
             <label className="block mb-1 font-medium">Price</label>
@@ -144,7 +149,9 @@ export default function BookForm() {
               className="w-full border rounded-md p-2"
               placeholder="Price (e.g. 19.99)"
             />
-            {errors.price && <p className="text-red-500 text-sm">{errors.price}</p>}
+            {errors.price && (
+              <p className="text-red-500 text-sm">{errors.price}</p>
+            )}
           </div>
 
           {/* Date */}
@@ -157,7 +164,9 @@ export default function BookForm() {
               onChange={handleChange}
               className="w-full border rounded-md p-2"
             />
-            {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
+            {errors.date && (
+              <p className="text-red-500 text-sm">{errors.date}</p>
+            )}
           </div>
 
           {/* Priority */}
@@ -174,12 +183,10 @@ export default function BookForm() {
               <option value="high">High</option>
             </select>
           </div>
-
         </div>
 
         {/* Category + Author */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
           <div>
             <label className="block mb-1 font-medium">Category</label>
             <input
@@ -189,7 +196,9 @@ export default function BookForm() {
               className="w-full border rounded-md p-2"
               placeholder="Book category"
             />
-            {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
+            {errors.category && (
+              <p className="text-red-500 text-sm">{errors.category}</p>
+            )}
           </div>
 
           <div>
@@ -201,9 +210,10 @@ export default function BookForm() {
               className="w-full border rounded-md p-2"
               placeholder="Author name"
             />
-            {errors.author && <p className="text-red-500 text-sm">{errors.author}</p>}
+            {errors.author && (
+              <p className="text-red-500 text-sm">{errors.author}</p>
+            )}
           </div>
-
         </div>
 
         {/* Image URL */}
@@ -237,7 +247,6 @@ export default function BookForm() {
         >
           {loading ? "Saving..." : "Save Book"}
         </button>
-
       </form>
     </div>
   );

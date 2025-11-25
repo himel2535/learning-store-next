@@ -13,7 +13,7 @@ const ManageBooks = () => {
   // Fetch books from backend
   const fetchBooks = async () => {
     try {
-      const res = await fetch("http://localhost:5000/books");
+      const res = await fetch("https://learning-books-server.vercel.app/books");
       if (!res.ok) throw new Error("Failed to fetch books");
       const data = await res.json();
       setBooks(data);
@@ -33,9 +33,12 @@ const ManageBooks = () => {
     if (!confirm("Are you sure you want to delete this book?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/books/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://learning-books-server.vercel.app/books/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!res.ok) throw new Error("Failed to delete");
 
       setBooks((prev) => prev.filter((b) => b._id !== id));

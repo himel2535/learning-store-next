@@ -1,12 +1,11 @@
-
-
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-
 const PopularBooks = async () => {
-  const res = await fetch("http://localhost:5000/popularBooks");
+  const res = await fetch(
+    "https://learning-books-server.vercel.app/popularBooks"
+  );
   const data = await res.json();
   return (
     <section className="py-20 bg-base-100 rounded-lg mb-10">

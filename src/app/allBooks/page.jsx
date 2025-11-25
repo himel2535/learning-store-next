@@ -10,7 +10,7 @@ const Books = () => {
 
   // Fetch books from backend
   useEffect(() => {
-    fetch("http://localhost:5000/books")
+    fetch("https://learning-books-server.vercel.app/books")
       .then((res) => res.json())
       .then(setBooks)
       .catch((err) => console.error(err));

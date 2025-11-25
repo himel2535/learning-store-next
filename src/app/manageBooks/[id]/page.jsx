@@ -1,15 +1,15 @@
-
 import Image from "next/image";
-import Link from "next/link"; 
+import Link from "next/link";
 
 const BookDetailsPage = async ({ params }) => {
-  const { id } = await params; 
+  const { id } = await params;
 
-
-  const res = await fetch(`http://localhost:5000/books/${id}`, {
-    cache: 'no-store' 
-  });
-
+  const res = await fetch(
+    `https://learning-books-server.vercel.app/books/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     return (
@@ -30,7 +30,7 @@ const BookDetailsPage = async ({ params }) => {
     );
   }
 
-  const book = await res.json(); 
+  const book = await res.json();
 
   if (!book || !book._id) {
     return (
@@ -85,10 +85,10 @@ const BookDetailsPage = async ({ params }) => {
               <Image
                 src={book.image}
                 alt={book.title}
-                fill 
-                style={{ objectFit: "cover" }} 
+                fill
+                style={{ objectFit: "cover" }}
                 className="transition-transform duration-300 hover:scale-105"
-                priority 
+                priority
               />
             </div>
           )}
@@ -153,8 +153,9 @@ const BookDetailsPage = async ({ params }) => {
 
             {/* Full Description */}
             <div className="text-gray-800 leading-relaxed text-base md:text-lg">
-              <p>{book.full_description|| "No detailed description available."}</p>
-             
+              <p>
+                {book.full_description || "No detailed description available."}
+              </p>
             </div>
           </div>
         </div>
