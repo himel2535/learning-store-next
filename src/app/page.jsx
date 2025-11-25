@@ -1,3 +1,4 @@
+import Banner from "@/components/Banner";
 import FeaturesSection from "@/components/FeaturesSection";
 import Hero from "@/components/Hero";
 import PopularBooks from "@/components/PopularBooks";
@@ -11,6 +12,7 @@ export default function Home() {
         <FeaturesSection></FeaturesSection>
         <PopularBooks></PopularBooks>
         <Testimonials></Testimonials>
+        <Banner></Banner>
    
       </div>
     </div>
