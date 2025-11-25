@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import AuthProvider from "@/contexts/AuthProvider";
 import ToastProvider from "@/components/ToastProvider";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,12 +25,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <AuthProvider>
           <ToastProvider />
           <Navbar></Navbar>
-          {children}
+          <div className="mx-7">
+            {children}
+          </div>
           <Footer></Footer>
         </AuthProvider>
       </body>

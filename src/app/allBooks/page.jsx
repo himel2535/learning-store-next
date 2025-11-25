@@ -10,14 +10,10 @@ const Books = async () => {
   return (
     <div className="flex flex-col">
       <h2>All Books</h2>
-      {/* <Link href="/allBooks/1">book 1</Link>
-      <Link href="/allBooks/2">book 2</Link>
-      <Link href="/allBooks/3">book 3</Link>
-      <Link href="/allBooks/4">book 4</Link>
-      <Link href="/allBooks/5">book 5</Link> */}
+
 
       {data.map((user) => (
-        <Link key={user.id} href={`/allBooks/${user.id}`}>
+        <Link key={user._id} href={`/allBooks/${user._id}`}>
           {user.title}
         </Link>
       ))}
