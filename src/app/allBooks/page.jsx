@@ -50,9 +50,13 @@ const Books = () => {
             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">All Categories</option>
-            <option value="fiction">Fiction</option>
-            <option value="non-fiction">Non-fiction</option>
-            <option value="science">Science</option>
+            <option value="Novel">Novel</option>
+            <option value="Tech">Tech</option>
+            <option value="Travel">Travel</option>
+            <option value="History">History</option>
+            <option value="Education">Education</option>
+            <option value="Business">Business</option>
+            <option value="Kids">Kids</option>
           </select>
         </div>
 

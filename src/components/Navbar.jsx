@@ -17,10 +17,8 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-white text-black shadow-sm px-4 sticky top-0 z-50">
-      
       {/* LEFT - Logo */}
       <div className="navbar-start">
-        
         {/* Mobile menu */}
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,10 +43,20 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52"
           >
-            <li><Link href="/" scroll={false}>Home</Link></li>
-            <li><Link href="/allBooks">All Books</Link></li>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/dashboard">Dashboard</Link></li>
+            <li>
+              <Link href="/" scroll={false}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/allBooks">All Books</Link>
+            </li>
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/addBook">Add Book</Link>
+            </li>
 
             {/* Mobile user dropdown */}
             {user && (
@@ -56,9 +64,15 @@ const Navbar = () => {
                 <details>
                   <summary>{user?.email}</summary>
                   <ul className="p-2">
-                    <li><Link href="/add-product">Add Product</Link></li>
-                    <li><Link href="/manage-products">Manage Products</Link></li>
-                    <li><button onClick={logout}>Logout</button></li>
+                    <li>
+                      <Link href="/add-product">Add Product</Link>
+                    </li>
+                    <li>
+                      <Link href="/manage-products">Manage Products</Link>
+                    </li>
+                    <li>
+                      <button onClick={logout}>Logout</button>
+                    </li>
                   </ul>
                 </details>
               </li>
@@ -76,16 +90,23 @@ const Navbar = () => {
       {/* CENTER - routes */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/allBooks">All Books</Link></li>
-          <li><Link href="/about">About</Link></li>
-          <li><Link href="/dashboard">Dashboard</Link></li>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/allBooks">All Books</Link>
+          </li>
+          <li>
+            <Link href="/about">About</Link>
+          </li>
+          <li>
+            <Link href="/addBook">Add Book</Link>
+          </li>
         </ul>
       </div>
 
       {/* RIGHT - Login/Register OR User Dropdown */}
       <div className="navbar-end gap-3">
-
         {!user && (
           <>
             <Link href="/login" className="btn bg-black text-white">
@@ -111,12 +132,12 @@ const Navbar = () => {
                 Signed in as <br />
                 <span className="font-bold">{user.email}</span>
               </li>
-              
+
               <li>
-                <Link href="/add-product">Add Product</Link>
+                <Link href="/addBook">Add Book</Link>
               </li>
               <li>
-                <Link href="/manage-products">Manage Products</Link>
+                <Link href="/manageBooks">Manage Books</Link>
               </li>
               <li>
                 <button onClick={logout}>Logout</button>
@@ -125,7 +146,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-
     </div>
   );
 };

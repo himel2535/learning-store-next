@@ -11,17 +11,19 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "@/firebase/firebase.config";
+import { useRouter } from "next/navigation";
 
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const signInUser = (email,password) => {
+  const signInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -31,7 +33,12 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     signOut(auth)
-      .then(() => {})
+      .then(() => {
+        // Remove cookie
+        document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        setUser(null);
+        router.push("/login"); // redirect to login page
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -41,14 +48,12 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-    return () => {
-      unSubscribe();
-    };
+    return () => unSubscribe();
   }, []);
 
-  const authInfo = { createUser, signInUser, signInWithGoogle,logout, user };
+  const authInfo = { createUser, signInUser, signInWithGoogle, logout, user };
 
-  return <AuthContext value={authInfo}>{children}</AuthContext>;
+  return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

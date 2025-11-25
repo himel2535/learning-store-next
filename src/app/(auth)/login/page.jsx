@@ -1,100 +1,76 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+import { useContext } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
-import React, { use } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 const Login = () => {
   const router = useRouter();
-  const { signInWithGoogle, signInUser } = use(AuthContext);
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get("redirect") || "/";
 
-  // ---- Email Sign In ----
-  const handleSignIn = (e) => {
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
+
+  // Email login
+  const handleSignIn = async (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    signInUser(email, password)
-      .then(() => {
-        toast.success("Logged in successfully!");
-        router.push("/");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        toast.error("Invalid email or password");
-      })
-      .finally();
+    try {
+      const result = await signInUser(email, password);
+
+      // Firebase UID কে cookie set
+      document.cookie = `token=${result.user.uid}; path=/`;
+
+      toast.success("Logged in successfully!");
+      router.push(redirectPath); // redirect to original page
+    } catch (err) {
+      console.log(err.message);
+      toast.error("Invalid email or password");
+    }
   };
 
-  // --- Google Sign In ---
-  const handleGoogleSignIn = () => {
-  
+  // Google login
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithGoogle();
 
-    signInWithGoogle()
-      .then(() => {
-        toast.success("Logged in!");
-        router.push("/");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        toast.error("Something went wrong!");
-      })
-      .finally();
+      document.cookie = `token=${result.user.uid}; path=/`;
+
+      toast.success("Logged in!");
+      router.push(redirectPath);
+    } catch (err) {
+      console.log(err.message);
+      toast.error("Something went wrong!");
+    }
   };
 
   return (
-    <div className="flex flex-col gap-12 items-center justify-center mx-4 min-h-screen mb-10">
-      <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-center mt-14 ">
-        Login for
-      </h1>
+    <div className="flex flex-col items-center justify-center min-h-screen mx-4 gap-8">
+      <h1 className="text-3xl font-bold">Login</h1>
 
-      <div className="card w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+      <div className="card w-full max-w-sm shadow-2xl">
         <div className="card-body">
           <form onSubmit={handleSignIn}>
-            <fieldset className="fieldset">
-              <label className="label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="input rounded-lg bg-white text-black focus:outline-gray-200 w-full"
-                placeholder="Email"
-                required
-              />
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Email" required className="input bg-white w-full mb-3" />
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password" required className="input bg-white w-full mb-3" />
 
-              <label className="label">Password</label>
-
-              <div className="relative">
-                <input
-                  type="password"
-                  name="password"
-                  className="input rounded-lg  bg-white text-black not-only:focus:outline-gray-200 w-full pr-10"
-                  placeholder="Password"
-                  required
-                />
-              </div>
-
-              <button type="submit" className="btn w-full mt-6 text-white">
-                Login
-              </button>
-            </fieldset>
+            <button type="submit" className="btn w-full mt-4">
+              Login
+            </button>
           </form>
 
-          {/* Google Login */}
-          <button onClick={handleGoogleSignIn} className="btn mt-4 w-full ">
-            sign in with google
+          <button onClick={handleGoogleSignIn} className="btn w-full mt-4">
+            Sign in with Google
           </button>
 
-          <p className="text-center mt-3">
-            New to our website? Please{" "}
-            <Link
-              className="text-blue-500 hover:text-blue-800"
-              href="/register"
-            >
-              Register
-            </Link>
+          <p className="mt-3 text-center">
+            New user? <Link className="text-blue-500" href="/register">Register</Link>
           </p>
         </div>
       </div>
