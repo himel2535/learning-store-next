@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Learning Books
 
-## Getting Started
+A simple **Next.js 16 + Firebase** project for managing books online. Users can browse, add, view, and delete books. Authentication is done using Firebase Authentication, and data is stored in Firebase Firestore.
 
-First, run the development server:
+---
+
+## Features
+
+- User authentication (Email & Google)
+- Add, view, and delete books
+- Protected routes for logged-in users
+- Responsive layout (mobile, tablet, desktop)
+- Clean UI using Tailwind CSS
+
+---
+
+## Setup & Installation
+
+1. **Clone the repository**
 
 ```bash
+git clone https://github.com/your-username/learning-books.git
+cd learning-books
+Install dependencies
+
+bash
+Copy code
+npm install
+Setup Firebase
+
+Go to Firebase Console and create a project
+
+Enable Authentication (Email/Password + Google)
+
+Create a Firestore Database
+
+Enable Storage (optional if uploading book images)
+
+Copy your Firebase config
+
+Create .env.local file
+
+Create a .env.local file in the root directory:
+
+ini
+Copy code
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+Make sure .env.local is added to .gitignore to keep your credentials safe.
+
+Run the project
+
+bash
+Copy code
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visit http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Route Summary
+Route	Description	Protected?
+/	Home page	No
+/allBooks	List all books	No
+/addBook	Add a new book	Yes
+/manageBooks	Manage all books (view/delete)	Yes
+/books/[id]	View single book details	Yes
+/login	User login page	No
+/register	User registration page	No
+/dashboard	User dashboard (optional)	Yes
+/profile	User profile page	Yes
+/about	About page	No
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Technologies Used
+Next.js 16
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+React
 
-## Learn More
+Firebase (Authentication, Firestore, Storage)
 
-To learn more about Next.js, take a look at the following resources:
+Tailwind CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+React Hot Toast / React Toastify for notifications
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
