@@ -1,19 +1,24 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 
 const Login = () => {
   const router = useRouter();
-  // const searchParams = useSearchParams();
-  // const redirectPath = searchParams.get("redirect") || "/";
+  const searchParams = useSearchParams();
+  const [redirectPath, setRedirectPath] = useState("/"); // default
+
+  useEffect(() => {
+    // client-side only
+    const path = searchParams?.get("redirect") || "/";
+    setRedirectPath(path);
+  }, [searchParams]);
 
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
 
-  // Email login
   const handleSignIn = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -21,29 +26,21 @@ const Login = () => {
 
     try {
       const result = await signInUser(email, password);
-
-      // Firebase UID cookie set
       document.cookie = `token=${result.user.uid}; path=/`;
-
       toast.success("Logged in successfully!");
-      router.push(redirectPath); // redirect to original page
+      router.push(redirectPath);
     } catch (err) {
-      console.log(err.message);
       toast.error("Invalid email or password");
     }
   };
 
-  // Google login
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithGoogle();
-
       document.cookie = `token=${result.user.uid}; path=/`;
-
       toast.success("Logged in!");
       router.push(redirectPath);
     } catch (err) {
-      console.log(err.message);
       toast.error("Something went wrong!");
     }
   };
@@ -56,9 +53,21 @@ const Login = () => {
         <div className="card-body">
           <form onSubmit={handleSignIn}>
             <label>Email</label>
-            <input type="email" name="email" placeholder="Email" required className="input bg-white w-full mb-3" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              className="input bg-white w-full mb-3"
+            />
             <label>Password</label>
-            <input type="password" name="password" placeholder="Password" required className="input bg-white w-full mb-3" />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              className="input bg-white w-full mb-3"
+            />
 
             <button type="submit" className="btn w-full mt-4">
               Login
@@ -70,7 +79,10 @@ const Login = () => {
           </button>
 
           <p className="mt-3 text-center">
-            New user? <Link className="text-blue-500" href="/register">Register</Link>
+            New user?{" "}
+            <Link className="text-blue-500" href="/register">
+              Register
+            </Link>
           </p>
         </div>
       </div>

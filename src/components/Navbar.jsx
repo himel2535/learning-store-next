@@ -57,6 +57,9 @@ const Navbar = () => {
             <li>
               <Link href="/addBook">Add Book</Link>
             </li>
+            <li>
+              <Link href="/manageBooks">Manage Books</Link>
+            </li>
 
             {/* Mobile user dropdown */}
             {user && (
@@ -65,10 +68,10 @@ const Navbar = () => {
                   <summary>{user?.email}</summary>
                   <ul className="p-2">
                     <li>
-                      <Link href="/add-product">Add Product</Link>
+                      <Link href="/addBook">Add Book</Link>
                     </li>
                     <li>
-                      <Link href="/manage-products">Manage Products</Link>
+                      <Link href="/manageBooks">Manage Books</Link>
                     </li>
                     <li>
                       <button onClick={logout}>Logout</button>
@@ -101,6 +104,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link href="/addBook">Add Book</Link>
+          </li>
+          <li>
+            <Link href="/manageBooks">Manage Books</Link>
           </li>
         </ul>
       </div>
