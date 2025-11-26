@@ -28,10 +28,11 @@ const PopularBooks = async () => {
               {/* Book Image */}
               <div className="mb-4">
                 <Image
-                  src={book.image || "/placeholder.jpg"}
+                  src={book.image_url || "/placeholder.jpg"}
                   alt={book.title}
                   width={400}
                   height={300}
+                  // onError={() => setImgSrc("/placeholder.jpg")}
                   className="rounded-lg object-cover w-full h-56"
                 />
               </div>

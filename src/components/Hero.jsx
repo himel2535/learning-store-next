@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import React from "react";
 
 const Hero = () => {
@@ -12,13 +12,13 @@ const Hero = () => {
     >
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
-        <Image
+        {/* <Image
           src="/heroImage.jpg"
           alt="Hero Image"
           fill
           priority
           className="object-cover object-center"
-        />
+        /> */}
         <div className="absolute inset-0 bg-white/70"></div>
       </div>
 

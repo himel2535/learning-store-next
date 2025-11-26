@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactCompiler: true,
+
+  images: {
+    domains: ["example.com", "learning-books-server.vercel.app"],
+  },
 };
 
 export default nextConfig;

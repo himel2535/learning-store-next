@@ -8,8 +8,8 @@ import Link from "next/link";
 
 const Login = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirectPath = searchParams.get("redirect") || "/";
+  // const searchParams = useSearchParams();
+  // const redirectPath = searchParams.get("redirect") || "/";
 
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
 
@@ -22,7 +22,7 @@ const Login = () => {
     try {
       const result = await signInUser(email, password);
 
-      // Firebase UID কে cookie set
+      // Firebase UID cookie set
       document.cookie = `token=${result.user.uid}; path=/`;
 
       toast.success("Logged in successfully!");
