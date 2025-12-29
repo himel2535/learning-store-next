@@ -33,7 +33,7 @@ const FeaturesSection = () => {
       <div className="container mx-auto px-6 text-center">
         
         {/* Section Header */}
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Why Learn With Us?
         </h2>
         <p className="text-base-content/70 max-w-2xl mx-auto mb-12">
@@ -45,7 +45,7 @@ const FeaturesSection = () => {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-xl bg-white shadow hover:shadow-lg hover:-translate-y-1 transition border border-base-200"
+              className="p-6 rounded-xl bg-base-200 shadow hover:shadow-lg hover:-translate-y-1 transition border border-transparent"
             >
               {/* Icon */}
               <div className="flex justify-center mb-4">{feature.icon}</div>

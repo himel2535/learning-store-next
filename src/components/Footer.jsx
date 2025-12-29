@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
       <aside >
-        <Image src="/learningBook.png" alt="logo" width={42} height={42} />
+        <Image src="/logo_final.png" alt="logo" width={100} height={60} className="h-14 w-auto object-contain brightness-0 invert" />
         <p>
           LEARNING BOOKS
           <br />

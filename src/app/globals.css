@@ -1,28 +1,46 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* DaisyUI 5 / Tailwind 4 Theme Variables */
+  /* Primary: Medium Brown #6E473B */
+  --color-primary: #6E473B;
+  
+  /* Secondary: Light Brown #A78D78 */
+  --color-secondary: #A78D78;
+  
+  /* Accent/Neutral: Dark Brown #291C0E */
+  --color-accent: #291C0E;
+  --color-neutral: #291C0E;
+  
+  /* Base: Cream #E1D4C2 */
+  --color-base-100: #E1D4C2;
+  --color-base-200: #BEB5A9; /* Lighter Beige */
+  --color-base-300: #A78D78; 
+  
+  /* Content: Dark Brown */
+  --color-base-content: #291C0E;
+
+  --background: var(--color-base-100);
+  --foreground: var(--color-base-content);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-primary: #6E473B;
+  --color-secondary: #A78D78;
+  --color-accent: #291C0E;
+  --color-neutral: #291C0E;
+  
+  --color-base-100: #E1D4C2;
+  --color-base-200: #BEB5A9;
+  --color-base-300: #A78D78;
+  
+  --color-base-content: #291C0E;
 }
 
 body {
-  background-color: #ffffff; /* light white background */
-  color: #000000; 
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
   font-family: Arial, Helvetica, sans-serif;
 }
+

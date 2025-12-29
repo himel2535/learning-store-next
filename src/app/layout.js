@@ -28,12 +28,14 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <AuthProvider>
-          <ToastProvider />
-          <Navbar></Navbar>
-          <div className="mx-7">
-            {children}
+          <div className="flex flex-col min-h-screen">
+            <ToastProvider />
+            <Navbar />
+            <main className="flex-grow container mx-auto px-6 py-8">
+              {children}
+            </main>
+            <Footer />
           </div>
-          <Footer></Footer>
         </AuthProvider>
       </body>
     </html>

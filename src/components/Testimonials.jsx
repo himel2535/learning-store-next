@@ -28,7 +28,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-base-100">
       <div className="container mx-auto px-6 text-center">
         {/* Section Header */}
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -43,7 +43,7 @@ const Testimonials = () => {
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="p-6 bg-white shadow rounded-xl hover:shadow-lg hover:-translate-y-1 transition-transform border border-base-200"
+              className="p-6 bg-base-200 shadow rounded-xl hover:shadow-lg hover:-translate-y-1 transition-transform border border-transparent"
             >
               {/* Feedback */}
               <p className="mb-4  italic">"{t.feedback}"</p>

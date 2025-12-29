@@ -3,7 +3,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <section className="py-16 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-center rounded-lg my-12">
+    <section className="py-16 bg-neutral text-white text-center rounded-lg my-12">
       <div className="container mx-auto px-6">
         {/* Headline */}
         <h2 className="text-3xl md:text-4xl font-bold mb-4">

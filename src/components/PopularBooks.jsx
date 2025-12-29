@@ -11,7 +11,7 @@ const PopularBooks = async () => {
     <section className="py-20 bg-base-100 rounded-lg mb-10">
       <div className="container mx-auto px-6 text-center">
         {/* Section Header */}
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Popular Books
         </h2>
         <p className="text-base-content/70 max-w-2xl mx-auto mb-12">
@@ -23,7 +23,7 @@ const PopularBooks = async () => {
           {data.map((book) => (
             <div
               key={book._id}
-              className="p-6 rounded-xl bg-white shadow hover:shadow-lg hover:-translate-y-1 transition border border-base-200"
+              className="p-6 rounded-xl bg-base-200 shadow hover:shadow-lg hover:-translate-y-1 transition border border-transparent"
             >
               {/* Book Image */}
               <div className="mb-4">
@@ -47,7 +47,7 @@ const PopularBooks = async () => {
 
               {/* CTA */}
               <Link
-                href={`/books/${book._id}`}
+                href={`/allBooks/${book._id}`}
                 className="btn btn-primary btn-sm"
               >
                 View Details

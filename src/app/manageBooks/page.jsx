@@ -4,9 +4,10 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 import { toast } from "react-toastify";
 import Link from "next/link"; // next/link ব্যবহার
+import Image from "next/image";
 
 const ManageBooks = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading: authLoading } = useContext(AuthContext);
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,6 +50,14 @@ const ManageBooks = () => {
     }
   };
 
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-bars loading-lg text-primary"></span>
+      </div>
+    );
+  }
+
   if (!user) {
     return (
       <p className="text-center p-8">
@@ -64,7 +73,9 @@ const ManageBooks = () => {
       </h1>
 
       {loading ? (
-        <p className="text-center">Loading books...</p>
+        <div className="flex justify-center items-center h-40">
+          <span className="loading loading-bars loading-lg text-primary"></span>
+        </div>
       ) : books.length === 0 ? (
         <p className="text-center">No books found.</p>
       ) : (
@@ -72,11 +83,24 @@ const ManageBooks = () => {
           {books.map((book) => (
             <div
               key={book._id}
-              className="border rounded-lg p-4 shadow hover:shadow-lg transition"
+              className="bg-base-200 rounded-lg p-4 shadow hover:shadow-lg transition flex items-center gap-4"
             >
-              <h2 className="text-lg font-bold mb-2">{book.title}</h2>
-              <p className="text-sm mb-1">Category: {book.category}</p>
-              <p className="text-sm mb-3">Price: ${book.price}</p>
+              {/* Book Image */}
+              <div className="flex-shrink-0">
+                <Image
+                  src={book.image_url || book.image || "/book_placeholder.png"}
+                  alt={book.title}
+                  width={60}
+                  height={60}
+                  className="object-cover rounded-md h-16 w-16"
+                />
+              </div>
+
+              <div className="flex-1">
+                <h2 className="text-lg font-bold mb-1">{book.title}</h2>
+                <p className="text-sm text-gray-600 mb-1">Category: {book.category}</p>
+                <p className="text-sm font-medium">Price: ${book.price}</p>
+              </div>
 
               <div className="flex justify-center gap-2">
                 {/* View button -> redirects to book details page */}

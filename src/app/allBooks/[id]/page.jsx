@@ -80,18 +80,17 @@ const BookDetailsPage = async ({ params }) => {
         {/* Product Details Card */}
         <div className="bg-white shadow-lg rounded-xl overflow-hidden">
           {/* Large Image/Banner */}
-          {book.image && (
-            <div className="relative w-full h-80 md:h-96 bg-gray-200 overflow-hidden">
-              <Image
-                src={book.image}
-                alt={book.title}
-                fill
-                style={{ objectFit: "cover" }}
-                className="transition-transform duration-300 hover:scale-105"
-                priority
-              />
-            </div>
-          )}
+          <div className="relative w-full h-80 md:h-96 bg-gray-200 overflow-hidden">
+            <Image
+              src={book.image_url || book.image || "/book_placeholder.png"}
+              alt={book.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover" }}
+              className="transition-transform duration-300 hover:scale-105"
+              priority
+            />
+          </div>
 
           <div className="p-6 md:p-10">
             {/* Product Title */}

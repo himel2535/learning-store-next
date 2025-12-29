@@ -87,7 +87,7 @@ export default function BookForm() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-white shadow-md rounded-xl">
+    <div className="max-w-3xl mx-auto p-8 bg-base-200 shadow-md rounded-xl">
       <h2 className="text-2xl font-bold mb-6">Add New Book</h2>
 
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -242,7 +242,7 @@ export default function BookForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700"
+          className="btn btn-primary text-white w-full"
           disabled={loading}
         >
           {loading ? "Saving..." : "Save Book"}

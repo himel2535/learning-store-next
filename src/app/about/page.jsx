@@ -12,11 +12,11 @@ export default function AboutPage() {
       </p>
 
       <Image 
-        src="/learningBook.png" 
+        src="/logo_final.png" 
         alt="Learning Books" 
-        width={200} 
-        height={200} 
-        className="mb-4"
+        width={300} 
+        height={300} 
+        className="mb-8 object-contain"
       />
 
       <p className="text-md">
