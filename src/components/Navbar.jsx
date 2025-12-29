@@ -120,6 +120,7 @@ const Navbar = () => {
         </ul>
       </div>
 
+{/*  */}
       {/* RIGHT - Login/Register OR User Dropdown */}
       <div className="navbar-end gap-3">
         {!user && (
