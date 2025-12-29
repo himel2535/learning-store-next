@@ -3,10 +3,22 @@ import Link from "next/link";
 import React from "react";
 
 const PopularBooks = async () => {
-  const res = await fetch(
-    "https://learning-books-server.vercel.app/popularBooks"
-  );
-  const data = await res.json();
+  let data = [];
+  try {
+    const res = await fetch(
+      "https://learning-books-server.vercel.app/popularBooks",
+      { next: { revalidate: 60 } }
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    data = await res.json();
+  } catch (error) {
+    console.error("Error fetching popular books:", error);
+    // fallback to empty array or mock data to prevent build fail
+    data = []; 
+  }
+
   return (
     <section className="py-20 bg-base-100 rounded-lg mb-10">
       <div className="container mx-auto px-6 text-center">
